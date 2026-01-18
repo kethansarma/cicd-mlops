@@ -1,16 +1,9 @@
-name: Test code and app
+#.github/workflows/ci.yaml
+name: Test CI workflows
 on:
-  pull_request:
-    paths:
-      - src/**
-      - tests/**
-      - params.yaml
   push:
     branches:
-      - main
-      - development
-      - 
-      
+      - feature/**
 jobs:
   test_model:
     environment: dev
@@ -19,28 +12,21 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
-
       - name: Environment setup
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
-      
+          python-version: 3.11
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        
+        run: 
       - name: Pull data and model
-
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: dvc pull -r s3_aws
-
       - name: Run tests
         run: pytest 
-
       - name: Evaluate model
         run: dvc exp run model_evaluation
-
       - name: Iterative CML setup
         uses: iterative/setup-cml@v1
     
@@ -56,3 +42,4 @@ jobs:
           # Create a report in PR
           cml comment create report.md
           cml comment create report.md --publish --publish-native
+      
