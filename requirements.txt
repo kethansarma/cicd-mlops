@@ -3,7 +3,6 @@ dvc[s3]
 dvclive
 pytest
 boto3
-cml
 scikit-learn
 pandas
 numpy
