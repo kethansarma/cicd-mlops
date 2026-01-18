@@ -48,7 +48,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           # Add the metrics to the report
-          dvc metrics show --show-md >> report.md
+          dvc metrics show --md >> report.md
           # Add the parameters to the report
           cat dvclive/params.yaml >> report.md
           # Create a report in PR
