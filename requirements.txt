@@ -2,7 +2,6 @@ dvc
 dvc[s3]
 dvclive
 pytest
-boto3
 scikit-learn
 pandas
 numpy
