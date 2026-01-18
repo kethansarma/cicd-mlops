@@ -1,0 +1,6 @@
+[core]
+    remote = s3_aws
+['remote "myremote"']
+    url = ../S3
+['remote "s3_aws"']
+    url = s3://kethan-gp-artifact/dvc_files_sync/
